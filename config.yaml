@@ -1,0 +1,50 @@
+# ----DETECT---- #
+
+# 摄像头数量（最多4个）
+camera_num: 1
+
+# 摄像头用户名
+camera_username_1: admin
+camera_username_2:
+camera_username_3:
+camera_username_4:
+# 摄像头密码
+camera_password_1: Fj628816
+camera_password_2:
+camera_password_3:
+camera_password_4:
+# 摄像头IP
+camera_ip_1: 192.168.1.64
+camera_ip_2:
+camera_ip_3:
+camera_ip_4:
+# 摄像头流地址
+camera_stream_1: '/Streaming/Channels/101'
+camera_stream_2:
+camera_stream_3:
+camera_stream_4:
+
+# 摄像头端口（默认554
+camera_port: 554
+# 检测休眠间隔（秒）
+sleep_time: 2
+
+# ----YOLO---- #
+
+# YOLO权重文件路径
+pth_pt: "pt/best.pt"
+
+# ----MYSQL---- #
+
+mysql_username: root
+mysql_password: 11111111
+mysql_ip: 127.0.0.1
+mysql_database: test_rdp
+mysql_table: rdp_result
+# 是否保存所有检测结果
+save_all: 'True'
+
+# ----API---- #
+api_ip: 192.168.165.39
+api_port: 5010
+mode: 'debug'

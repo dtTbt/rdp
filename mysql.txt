@@ -1,0 +1,22 @@
+mysql -u root -p
+密码11111111
+
+CREATE DATABASE test_rdp;  # 创建数据库
+
+USE test_rdp;  # 使用上一步创建的数据库
+
+CREATE TABLE rdp_result (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    camera INT,
+    type VARCHAR(255),
+    date_time TIMESTAMP(3),
+    image_data LONGBLOB
+);  # 创建数据库表
+
+DELETE FROM rdp_result;  # 删除数据库表中所有内容，但保留格式
+
+pip install Flask pymysql
+pip install mysql-connector-python
+
+flask版本小于2.3
+pip install gunicorn
