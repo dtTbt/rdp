@@ -37,7 +37,7 @@ pth_pt: "pt/best.pt"
 # ----MYSQL---- #
 
 mysql_username: root
-mysql_password: 11111111
+mysql_password: 123456
 mysql_ip: 127.0.0.1
 mysql_database: test_rdp
 mysql_table: rdp_result
