@@ -10,6 +10,12 @@
 pip install ultralytics
 ```
 
+安装其他依赖包：
+
+```bash
+pip install -r requirements.txt
+```
+
 ### mysql数据库表格式
 
 ```bash
