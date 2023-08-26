@@ -103,7 +103,7 @@ if __name__ == '__main__':
             img_name = f'{date_time}.jpg'
             results = model(frame, save=True, conf=0.5)
             obj_np = results[0].boxes.cls.cpu().numpy()
-            kd = "Result:"
+            kd = "Result-"
             for obj in obj_np:
                 if obj == 1:
                     kd += "person,"
@@ -113,14 +113,14 @@ if __name__ == '__main__':
                     kd += "fire,"
                 if obj == 4:
                     kd += "smoke,"
-            if kd == "Result:":
+            if kd == "Result-":
                 kd += "nothing"
             img_name = kd + "_" + img_name
             save_img = os.path.join(save_pth, img_name)
             os.rename(os.path.join(save_pth, "image0.jpg"), save_img)
             with open(save_img, "rb") as image_file:
                 binary_image = image_file.read()
-            if save_all == 'True' or kd != "Result:nothing":
+            if save_all == 'True' or kd != "Result-nothing":
                 sql = f"INSERT INTO {mysql_table} (`camera`, `type`, `date_time`, `image_data`) VALUES (%s, %s, %s, %s)"
                 data_to_insert = (camera_index, kd, date_time, binary_image)
                 cursor.execute(sql, data_to_insert)

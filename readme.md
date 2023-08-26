@@ -1,6 +1,6 @@
 ## 项目简介
 
-本项目用于每隔一定时间检测摄像头画面，若画面变化超过一定阈值，则进行目标检测。如果检测到有老鼠或未带安全帽的人员，将会发送POST请求到指定URL，并保存检测后的图片。未检测到目标的图片将不予保存。
+本项目基于YOLOv8。用于每隔一定时间检测所有摄像头画面（最多支持4个摄像头），检测目标为老鼠，未带安全帽的人员，火焰或者烟雾。检测结果保存于mysql数据库中。并提供一个API接口服务，支持调取和删除mysql内数据。
 
 ### 环境配置
 
@@ -10,28 +10,46 @@
 pip install ultralytics
 ```
 
-### 运行
-
-使用以下命令来运行本项目：
+### mysql数据库表格式
 
 ```bash
-python detect.py --cfg config.yaml
+CREATE TABLE rdp_result (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    camera INT,
+    type VARCHAR(255),
+    date_time TIMESTAMP(3),
+    image_data LONGBLOB
+);
+```
+
+### 运行
+
+#### 1.使用以下命令来运行检测主程序：
+
+```bash
+python main.py
+```
+
+#### 2.使用以下命令在本机运行一个API接口：
+
+```bash
+python api.py
+```
+
+接口具体功能见 [`API.md`](./API.md)。
+
+#### 3.使用以下命令以删除mysql中已存在的所有记录：
+
+```bash
+python mysql_delete.py
+```
+
+#### 3.使用以下命令向接口发送POST请求（用于调试）：
+
+```bash
+python post.py
 ```
 
 ### 配置参数文件
 
-请自行配置参数文件`config.yaml`，该文件将包含摄像头监测的相关设置和阈值，以及YOLO使用的权重路径等。
-
-### 数据保存
-
-所有检测后的图片将保存在`runs/detect`的最新文件夹下，文件名包含检测信息与日期时间。
-
-### POST请求
-
-若检测到老鼠，将会发送`{"type": "rat", "image": img_name}`。
-
-若检测到未带安全帽的人员，将会发送`{"type": "person without helmet", "image": img_name}`。
-
-若同时存在，将会发送`{"type": "person without helmet and rat", "image": img_name}`。
-
-其中`img_name`为保存图片的文件名。
+请自行配置参数文件`config.yaml`。
