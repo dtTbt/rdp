@@ -4,13 +4,7 @@
 
 ### 环境配置
 
-在运行本项目之前，请确保已经安装了`ultralytics`库，可通过以下命令进行安装：
-
-```bash
-pip install ultralytics
-```
-
-安装其他依赖包：
+在运行本项目之前，通过以下命令安装依赖包：
 
 ```bash
 pip install -r requirements.txt

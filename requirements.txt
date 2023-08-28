@@ -14,6 +14,8 @@ tqdm>=4.64.0
 Flask
 pymysql
 mysql-connector-python
+onnx
+onnxruntime
 
 # Plotting ------------------------------------
 pandas>=1.1.4

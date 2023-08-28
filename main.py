@@ -88,7 +88,11 @@ if __name__ == '__main__':
     save_pth = os.path.join(save_pth_0, "predict")
     new_predict_folder_flg = 0
 
-    model = YOLO(pth_pt)
+    model = None
+    if config["pt_kd"] == "pt":
+        model = YOLO(config["pth_pt"])
+    else:
+        model = YOLO(config["pth_onnx"])
 
     print("Ready.")
 
