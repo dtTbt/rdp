@@ -13,6 +13,7 @@ pip install -r requirements.txt
 ### 二、权重下载
 
 在此下载权重：[百度网盘](https://pan.baidu.com/s/1EW2cfUOwv1JqGNpa-meyyg?pwd=jntm)
+
 然后将其解压在项目下即可。
 
 ### 三、MySQL数据库表格式
