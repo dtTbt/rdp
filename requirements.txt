@@ -16,6 +16,8 @@ pymysql
 mysql-connector-python
 onnx
 onnxruntime
+psutil
+gunicorn
 
 # Plotting ------------------------------------
 pandas>=1.1.4
