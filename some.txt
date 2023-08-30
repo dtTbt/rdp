@@ -1,0 +1,74 @@
+#下载安装MySQL（MySQL与rdp都应在用户文件夹下）
+wget https://downloads.mysql.com/archives/get/p/23/file/mysql-8.0.33-linux-glibc2.28-aarch64.tar.gz
+
+tar xzf mysql-8.0.33-linux-glibc2.28-aarch64.tar.gz
+
+mv mysql-8.0.33-linux-glibc2.28-aarch64 mysql
+
+vim ~/.bashrc
+export PATH=$PATH:~/mysql/bin
+source ~/.bashrc
+
+mysqld --initialize --user=$USER
+
+-----------------------------------------------------------------------------------
+#创建开机启动服务
+
+sudo vim /etc/systemd/system/rdp.service
+
+[Unit]
+
+[Service]
+ExecStartPre=/bin/sleep 5
+ExecStart=/home/[user_name]/mysql/bin/mysqld
+ExecStart=/usr/bin/python3 /home/[user_name]/rdp/main.py
+ExecStart=/usr/bin/python3 /home/[user_name]/rdp/api.py
+User=[user_name]
+Group=[user_name]
+
+[Install]
+WantedBy=default.target
+
+sudo systemctl daemon-reload
+sudo systemctl enable rdp.service
+
+sudo systemctl start rdp.service
+
+-----------------------------------------------------------------------------------
+#启动mysql服务
+mysqld_safe &
+
+#查看服务是否启动
+ps aux | grep mysqld
+
+#若启动失败（端口占用）
+lsof -i:3307  # 找到占用某个端口（这里为3307）的进程
+kill -9 20155  #杀死这个进程，20155为进程号
+
+-----------------------------------------------------------------------------------
+#更改MySQL密码，创建数据库表
+mysql -u root -p
+
+alter user 'root'@'localhost' identified by '123456';
+FLUSH PRIVILEGES;
+
+CREATE DATABASE test_rdp;  # 创建数据库
+USE test_rdp;  # 使用上一步创建的数据库
+CREATE TABLE rdp_result (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    camera INT,
+    type VARCHAR(255),
+    date_time TIMESTAMP(3),
+    image_data LONGBLOB
+);  # 创建数据库表
+
+#DELETE FROM rdp_result;  # 删除数据库表中所有内容，但保留格式
+
+
+-----------------------------------------------------------------------------------
+#传输文件：
+scp -r forlinx@192.168.10.81:/home/forlinx/rdp/post_img D:\
+
+#删除所有mysql记录
+python mysql_delete.py
+
