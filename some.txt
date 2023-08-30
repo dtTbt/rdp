@@ -19,7 +19,7 @@ sudo vim /etc/systemd/system/rdp.service
 [Unit]
 
 [Service]
-ExecStartPre=/bin/sleep 5
+ExecStartPre=/bin/sleep 10
 ExecStart=/home/[user_name]/mysql/bin/mysqld
 ExecStart=/usr/bin/python3 /home/[user_name]/rdp/main.py
 ExecStart=/usr/bin/python3 /home/[user_name]/rdp/api.py
