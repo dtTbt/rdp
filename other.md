@@ -72,6 +72,8 @@
    [Install]
    WantedBy=default.target
    ```
+   
+   注意将`[user_name]`替换为您的用户名。
 
 3. 重新加载 systemd 配置：
 
