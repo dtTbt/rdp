@@ -62,6 +62,10 @@ python post.py
 
 ### 六、其它
 
-#### 1.数据集下载（YOLOv8格式）
+#### 1.MySQL详细安装配置方法与项目开机自启动
+
+见[`other.md`](./other.md)
+
+#### 2.数据集下载（YOLOv8格式）
 
 [百度网盘](https://pan.baidu.com/s/1Buv2slwkvScuBe4nz7mCUA?pwd=jntm)
