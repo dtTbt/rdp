@@ -4,6 +4,9 @@ from main import get_mysql_config, read_config_file
 import base64
 import datetime
 from json import JSONEncoder
+import logging
+import copy
+
 
 # 自定义JSONEncoder，用于处理datetime类型的数据，保留毫秒
 class CustomJSONEncoder(JSONEncoder):
@@ -31,10 +34,17 @@ mysql_config = {
     'cursorclass': pymysql.cursors.DictCursor
 }
 
-# 处理POST请求，查询数据库并返回信息
+
+# 配置日志记录器
+logging.basicConfig(filename=config['log_path'], level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
 @app.route('/query/recent-messages', methods=['POST'])
 def query_recent_messages():
     try:
+        # 在每个路由函数开始时记录信息
+        logging.info('Received POST request to /query/recent-messages')
+
         connection = pymysql.connect(**mysql_config)
         cursor = connection.cursor()
 
@@ -48,13 +58,28 @@ def query_recent_messages():
         connection.close()
         for row in result:
             row['image_data'] = base64.b64encode(row['image_data']).decode('utf-8')
+
+        # 复制result并删除image_data
+        result_copy = copy.deepcopy(result)
+        for row in result_copy:
+            del row['image_data']
+
+        # 记录返回结果
+        logging.info(f'Response sent: {result_copy}')
+
         return jsonify({'data': result}), 200
     except Exception as e:
+        # 记录错误信息
+        logging.error(f'Error: {str(e)}')
         return jsonify({'api_error': str(e)}), 500
+
 
 @app.route('/query/by-datetime', methods=['POST'])
 def query_by_datetime():
     try:
+        # 在每个路由函数开始时记录信息
+        logging.info('Received POST request to /query/by-datetime')
+
         connection = pymysql.connect(**mysql_config)
         cursor = connection.cursor()
 
@@ -69,13 +94,28 @@ def query_by_datetime():
         connection.close()
         for row in result:
             row['image_data'] = base64.b64encode(row['image_data']).decode('utf-8')
+
+        # 复制result并删除image_data
+        result_copy = copy.deepcopy(result)
+        for row in result_copy:
+            del row['image_data']
+
+        # 记录返回结果
+        logging.info(f'Response sent: {result_copy}')
+
         return jsonify({'data': result}), 200
     except Exception as e:
+        # 记录错误信息
+        logging.error(f'Error: {str(e)}')
         return jsonify({'api_error': str(e)}), 500
+
 
 @app.route('/delete/by-datetime', methods=['POST'])
 def delete_by_datetime():
     try:
+        # 在每个路由函数开始时记录信息
+        logging.info('Received POST request to /delete/by-datetime')
+
         connection = pymysql.connect(**mysql_config)
         cursor = connection.cursor()
 
@@ -89,13 +129,22 @@ def delete_by_datetime():
         cursor.close()
         connection.close()
 
+        # 记录成功消息
+        logging.info('Records deleted successfully')
+
         return jsonify({'message': 'Records deleted successfully'}), 200
     except Exception as e:
+        # 记录错误信息
+        logging.error(f'Error: {str(e)}')
         return jsonify({'api_error': str(e)}), 500
+
 
 @app.route('/delete/all', methods=['POST'])
 def delete_all_records():
     try:
+        # 在每个路由函数开始时记录信息
+        logging.info('Received POST request to /delete/all')
+
         connection = pymysql.connect(**mysql_config)
         cursor = connection.cursor()
 
@@ -106,9 +155,15 @@ def delete_all_records():
         cursor.close()
         connection.close()
 
+        # 记录成功消息
+        logging.info('All records deleted successfully')
+
         return jsonify({'message': 'All records deleted successfully'}), 200
     except Exception as e:
+        # 记录错误信息
+        logging.error(f'Error: {str(e)}')
         return jsonify({'api_error': str(e)}), 500
+
 
 if __name__ == '__main__':
     api_ip, api_port = config['api_ip'], config['api_port']

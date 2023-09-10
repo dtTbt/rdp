@@ -53,3 +53,5 @@ save_all: 'False'
 api_ip: 192.168.1.39
 api_port: 5010
 mode: 'debug'
+# 日志文件保存路径
+log_path: 'app.log'
