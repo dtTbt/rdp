@@ -24,7 +24,7 @@ camera_stream_2:
 camera_stream_3:
 camera_stream_4:
 
-# 摄像头端口（默认554
+# 摄像头端口(默认554)
 camera_port: 554
 # 检测休眠间隔（秒）
 sleep_time: 0

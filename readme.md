@@ -69,3 +69,7 @@ python post.py
 #### 2.数据集下载（YOLOv8格式）
 
 [百度网盘](https://pan.baidu.com/s/1Buv2slwkvScuBe4nz7mCUA?pwd=jntm)
+
+#### 3.API日志记录说明
+
+见[`log.md`](./log.md)
