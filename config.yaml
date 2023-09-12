@@ -1,28 +1,28 @@
 # ----CAMERA---- #
 
 # 摄像头数量（最多4个）
-camera_num: 1
+camera_num: 4
 
 # 摄像头用户名
 camera_username_1: admin
-camera_username_2:
-camera_username_3:
-camera_username_4:
+camera_username_2: admin
+camera_username_3: admin
+camera_username_4: admin
 # 摄像头密码
-camera_password_1: admin
-camera_password_2:
-camera_password_3:
-camera_password_4:
+camera_password_1: a12345678
+camera_password_2: a12345678
+camera_password_3: a12345678
+camera_password_4: a12345678
 # 摄像头IP
-camera_ip_1: 192.168.1.64
-camera_ip_2:
-camera_ip_3:
-camera_ip_4:
+camera_ip_1: 192.168.10.17
+camera_ip_2: 192.168.10.18
+camera_ip_3: 192.168.10.19
+camera_ip_4: 192.168.10.20
 # 摄像头流地址
 camera_stream_1: '/Streaming/Channels/101'
-camera_stream_2:
-camera_stream_3:
-camera_stream_4:
+camera_stream_2: '/Streaming/Channels/101'
+camera_stream_3: '/Streaming/Channels/101'
+camera_stream_4: '/Streaming/Channels/101'
 
 # 摄像头端口(默认554)
 camera_port: 554
@@ -52,6 +52,6 @@ save_all: 'False'
 # 修改为本机IP
 api_ip: 192.168.1.39
 api_port: 5010
-mode: 'debug'
+mode: 'run'
 # 日志文件保存路径
 log_path: 'app.log'
