@@ -44,7 +44,7 @@ CREATE TABLE rdp_result (
 
 见[`log.md`](./log.md)
 
-### 七、（可选）手动运行
+### 八、（可选）手动运行
 
 #### 1.使用以下命令来运行检测主程序：
 
@@ -71,7 +71,7 @@ python mysql_delete.py
 python post.py
 ```
 
-### 八、（可选）其他
+### 九、（可选）其他
 
 #### 1.数据集下载（YOLOv8格式）
 
