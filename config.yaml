@@ -47,11 +47,16 @@ mysql_database: test_rdp
 mysql_table: rdp_result
 # 是否保存所有检测结果("True" or "False")
 save_all: 'False'
+# 当数据库占用大于某个值时清除(MB)
+delete_threshold: 1024
 
 # ----API---- #
 # 修改为本机IP
-api_ip: 192.168.1.39
+api_ip: 192.168.10.84
 api_port: 5010
+# 'debug' or 'run'
 mode: 'run'
 # 日志文件保存路径
 log_path: 'app.log'
+# 当日志文件占用大于某个值时清除(MB)
+log_threshold: 5

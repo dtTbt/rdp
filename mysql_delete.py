@@ -11,7 +11,7 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
-delete_query = "DELETE FROM {}".format(mysql_table)
+delete_query = "TRUNCATE TABLE {}".format(mysql_table)
 cursor.execute(delete_query)
 conn.commit()
 
