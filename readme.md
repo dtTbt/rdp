@@ -58,7 +58,6 @@ python main.py
 python api.py
 ```
 
-
 #### 3.使用以下命令以删除MySQL中已存在的所有记录：
 
 ```bash
@@ -70,6 +69,13 @@ python mysql_delete.py
 ```bash
 python post.py
 ```
+
+#### 5.使用以下命令进行模型测试：
+
+```bash
+python test.py  --path ./test_img
+```
+其中`--path`参数指出测试图片所在文件夹的路径。输出结果保存在`./test_img_predict`文件夹中。
 
 ### 九、（可选）其他
 
