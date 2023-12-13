@@ -181,3 +181,48 @@ def delete_all_files(folder_path):
         print(f"All files in '{folder_path}' have been deleted.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+def clear_large_file(file_path, max_size_mb):
+    try:
+        file_size = os.path.getsize(file_path)
+        max_size_bytes = max_size_mb * 1024 * 1024
+        if file_size > max_size_bytes:
+            with open(file_path, 'w') as file:
+                file.truncate(0)
+            print(f"file '{file_path}' cleared.")
+        else:
+            print(f"file '{file_path}' is not large enough to be cleared.")
+
+    except FileNotFoundError:
+        print(f"file '{file_path}' not found.")
+
+
+def get_folder_size_mb(folder_path):
+    total_size = 0
+    folder_path = os.path.abspath(folder_path)
+
+    for dirpath, dirnames, filenames in os.walk(folder_path):
+        for filename in filenames:
+            filepath = os.path.join(dirpath, filename)
+            total_size += os.path.getsize(filepath)
+
+    # Convert bytes to megabytes
+    total_size_mb = total_size / (1024 * 1024)
+
+    return total_size_mb
+
+
+def get_disk_space(path='/'):
+    statvfs = os.statvfs(path)
+
+    # 块大小
+    block_size = statvfs.f_frsize
+
+    # 剩余块数
+    blocks_available = statvfs.f_bavail
+
+    # 计算剩余磁盘空间（以MB为单位）
+    free_space_mb = (block_size * blocks_available) / (1024 ** 2)
+
+    return free_space_mb

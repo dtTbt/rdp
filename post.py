@@ -17,7 +17,7 @@ api_ip , api_port = config['api_ip'], config['api_port']
 # 定义要发送的JSON数据
 data_to_send = {
     "start_datetime": "2023-08-21 22:09:09",
-    "limit": 3
+    "limit": 4
 }
 url = "http://{}:{}/query/recent-messages".format(api_ip, api_port)
 response = requests.post(url, json=data_to_send)

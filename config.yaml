@@ -37,26 +37,40 @@ pth_pt: "pt/best.pt"
 pth_onnx: "pt/best.onnx"
 # 使用哪一个进行推理("pt" or "onnx")
 pt_kd: "onnx"
+# 置信度阈值
+conf_threshold: 0.6
+# 主程序日志文件
+log_path_main: 'main.log'
+# 是否记录所有摄像头检测日志
+all_detect_info: 'True'
+# 当日志文件占用大于某个值时清除(MB)
+log_main_threshold: 5
+# 是否保存所有检测结果("True" or "False")
+save_all: 'False'
+# 是否禁用烟雾检测
+ban_smoke: 'True'
 
 # ----MYSQL---- #
 
+# MySQL安装路径
+mysql_path: '/home/forlinx/mysql'
 mysql_username: root
 mysql_password: 123456
 mysql_ip: 127.0.0.1
 mysql_database: test_rdp
 mysql_table: rdp_result
-# 是否保存所有检测结果("True" or "False")
-save_all: 'False'
+# 是否禁止新增数据
+ban_save: 'False'
 # 当数据库占用大于某个值时清除(MB)
-delete_threshold: 1024
+delete_threshold: 256
 
 # ----API---- #
 # 修改为本机IP
-api_ip: 192.168.10.84
+api_ip: 192.168.10.86
 api_port: 5010
 # 'debug' or 'run'
 mode: 'run'
 # 日志文件保存路径
-log_path: 'app.log'
+log_path: 'api.log'
 # 当日志文件占用大于某个值时清除(MB)
 log_threshold: 5

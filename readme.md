@@ -40,7 +40,7 @@ CREATE TABLE rdp_result (
 
 见[`API.md`](./API.md)
 
-### 七.API日志记录说明
+### 七.日志记录说明文档
 
 见[`log.md`](./log.md)
 

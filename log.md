@@ -36,7 +36,9 @@
 
 ### 日志位置
 
-日志文件保存路径由`config.yaml` 中的 `log_path`参数指定。
+检测主程序与API接口程序分别记录日志于两个文件:
+- 检测主程序日志文件保存路径由`config.yaml` 中的 `log_path_main`参数指定。（此日志文件仅用于开发调试）
+- API日志文件保存路径由`config.yaml` 中的 `log_path`参数指定。
 
 ### 示例
 

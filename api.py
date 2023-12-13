@@ -7,6 +7,7 @@ from json import JSONEncoder
 import logging
 import copy
 import os
+from file_operations import clear_large_file
 
 
 # 自定义JSONEncoder，用于处理datetime类型的数据，保留毫秒
@@ -166,24 +167,9 @@ def delete_all_records():
         return jsonify({'api_error': str(e)}), 500
 
 
-def clear_large_file(file_path, max_size_mb):
-    try:
-        file_size = os.path.getsize(file_path)
-        max_size_bytes = max_size_mb * 1024 * 1024
-        if file_size > max_size_bytes:
-            with open(file_path, 'w') as file:
-                file.truncate(0)
-            print(f"文件 '{file_path}' 已清空，原大小为 {file_size} 字节。")
-
-        else:
-            print(f"文件 '{file_path}' 大小为 {file_size} 字节，未超过阈值 {max_size_bytes} 字节，不需要清空。")
-
-    except FileNotFoundError:
-        print(f"文件 '{file_path}' 不存在。")
-
-
 if __name__ == '__main__':
     clear_large_file(config['log_path'], config['log_threshold'])
+    logging.info("================== new start ==================")
     api_ip, api_port = config['api_ip'], config['api_port']
     if config['mode'] == 'debug':
         app.run(host=api_ip, port=api_port, debug=False)

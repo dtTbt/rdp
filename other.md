@@ -253,14 +253,31 @@
    );
    ```
    
-5. （可选）查询当前有多少条数据：
+5. 禁用 `test_rdp` 数据库记录binlog：
+
+   打开一个新的终端窗口。打开MySQL服务器的配置文件 `my.cnf`。该文件通常位于`/etc/mysql/my.cnf`。
+
+   ```shell
+   sudo vim /etc/mysql/my.cnf
+   ```
+   
+    在文件中添加以下内容：
+
+   ```shell
+   [mysqld]
+   binlog-ignore-db=test_rdp
+   ```
+   
+   保存并退出，然后重启MySQL服务。
+
+6. （可选）查询当前有多少条数据：
 
    ```shell
    USE test_rdp;
    SELECT COUNT(*) FROM rdp_result;
    ```
 
-6. （可选）如果需要，您可以使用以下命令删除数据库表中的所有内容：
+7. （可选）如果需要，您可以使用以下命令删除数据库表中的所有内容：
 
    ```shell
    TRUNCATE TABLE rdp_result;
